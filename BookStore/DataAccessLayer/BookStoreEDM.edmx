@@ -94,7 +94,7 @@
           <Property Name="PageCount" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="2000" Nullable="false" />
           <Property Name="CountryID" Type="int" Nullable="false" />
-          <Property Name="Price" Type="money" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Books_AttributesValue">
           <Key>
@@ -380,7 +380,7 @@
           <Property Name="PageCount" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CountryID" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Int32" />
+          <Property Name="Price" Type="Decimal" />
           <NavigationProperty Name="Author" Relationship="Self.FK_Books_Author" FromRole="Books" ToRole="Author" />
           <NavigationProperty Name="Books_AttributesValue" Relationship="Self.FK_Books_AttributesValue_Books" FromRole="Books" ToRole="Books_AttributesValue" />
           <NavigationProperty Name="Country" Relationship="Self.FK_Books_Country" FromRole="Books" ToRole="Country" />

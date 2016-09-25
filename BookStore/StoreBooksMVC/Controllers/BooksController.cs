@@ -9,21 +9,52 @@ using System.Web;
 using System.Web.Mvc;
 using DataAccessLayer;
 using System.IO;
+using System.ComponentModel.DataAnnotations;
 
 namespace StoreBooksMVC.Controllers
 {
     public class BooksController : Controller
     {
         private BookStoreEntities db = new BookStoreEntities();
+        private BookStoreEntities DB = new BookStoreEntities();
         private const string imageUnavailable = "noBook.jpg";
 
         // GET: Books
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string sortedQuery, string searchQuery)
         {
             var books = db.Books.Include(b => b.Author).Include(b => b.Country).Include(b => b.Genre);
+
+            ViewBag.NameSortParam = String.IsNullOrEmpty(sortedQuery) ? "Title_desc" : "";
+            ViewBag.NameSortParam = sortedQuery == "Author" ? "Author_desc" : "Author";
+
+            books = from s in db.Books select s;
+
+            if (!String.IsNullOrEmpty(searchQuery))
+            {
+                books = books.Where(s => s.Title.ToUpper().Contains(searchQuery.ToUpper())
+                                || s.Author.FullName.ToUpper().Contains(searchQuery.ToUpper())
+                                || s.Genre.GenreName.ToUpper().Contains(searchQuery.ToUpper()));
+
+            }
+
+            switch (sortedQuery)
+            {
+                case "Title_desc":
+                    books = books.OrderByDescending(s => s.Title);
+                    break;
+                case "Author":                                                          //sorting functionality
+                    books = books.OrderByDescending(s => s.AuthorID);
+                    break;
+                default:
+                    books = books.OrderBy(s => s.Title);
+                    break;
+            }
+
+            
+
             return View(await books.ToListAsync());
         }
-
+        
         // GET: Books/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -45,6 +76,7 @@ namespace StoreBooksMVC.Controllers
             ViewBag.AuthorID = new SelectList(db.Authors, "ID", "FullName");
             ViewBag.CountryID = new SelectList(db.Countries, "ID", "Country1");
             ViewBag.GenreID = new SelectList(db.Genres, "ID", "GenreName");
+
             return View();
         }
 
@@ -63,6 +95,7 @@ namespace StoreBooksMVC.Controllers
                     var path = Path.Combine(Server.MapPath("~/Images"), fileName);
                     file.SaveAs(path);
                     book.ImagePath = fileName;
+
                 }
                 else
                 {
@@ -73,6 +106,7 @@ namespace StoreBooksMVC.Controllers
                 return RedirectToAction("Index");
             }
 
+            
             ViewBag.AuthorID = new SelectList(db.Authors, "ID", "FullName", book.AuthorID);
             ViewBag.CountryID = new SelectList(db.Countries, "ID", "Country1", book.CountryID);
             ViewBag.GenreID = new SelectList(db.Genres, "ID", "GenreName", book.GenreID);
@@ -104,20 +138,29 @@ namespace StoreBooksMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "ID,Title,AuthorID,GenreID,ImagePath,PageCount,Description,CountryID,Price")] Book book, HttpPostedFileBase file)
         {
-            book = await db.Books.FindAsync(book.ID);
+            string imagePt = "";
+            using (DB)
+            {
+                imagePt = DB.Books.Find(book.ID).ImagePath;
+            }
+
             if (ModelState.IsValid)
             {
                 if (file != null && file.ContentLength > 0)
                 {
-                    if (book.ImagePath != imageUnavailable)
+                    if (imagePt != imageUnavailable)
                     {
-                        System.IO.File.Delete(Path.Combine(Server.MapPath("~/Images"), book.ImagePath));
+                        System.IO.File.Delete(Path.Combine(Server.MapPath("~/Images"), imagePt));
                     }
-
+                    
                     var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     var path = Path.Combine(Server.MapPath("~/Images"), fileName);
                     file.SaveAs(path);
                     book.ImagePath = fileName;
+                }
+                else
+                {
+                    book.ImagePath = imagePt;
                 }
 
                 db.Entry(book).State = EntityState.Modified;

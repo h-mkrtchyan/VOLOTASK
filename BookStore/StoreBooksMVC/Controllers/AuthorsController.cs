@@ -47,7 +47,7 @@ namespace StoreBooksMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,FullName,CountryID")] Author author)
+        public async Task<ActionResult> Create([Bind(Include = "ID,FullName")] Author author)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace StoreBooksMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,FullName,CountryID")] Author author)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,FullName")] Author author)
         {
             if (ModelState.IsValid)
             {

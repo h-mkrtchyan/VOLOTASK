@@ -80,7 +80,6 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FullName" Type="nvarchar" MaxLength="40" Nullable="false" />
-          <Property Name="CountryID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Books">
           <Key>
@@ -365,7 +364,6 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FullName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CountryID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Books" Relationship="Self.FK_Books_Author" FromRole="Author" ToRole="Books" />
         </EntityType>
         <EntityType Name="Book">
@@ -380,7 +378,7 @@
           <Property Name="PageCount" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CountryID" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Decimal" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="Author" Relationship="Self.FK_Books_Author" FromRole="Books" ToRole="Author" />
           <NavigationProperty Name="Books_AttributesValue" Relationship="Self.FK_Books_AttributesValue_Books" FromRole="Books" ToRole="Books_AttributesValue" />
           <NavigationProperty Name="Country" Relationship="Self.FK_Books_Country" FromRole="Books" ToRole="Country" />
@@ -456,8 +454,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Books_Author">
-          <End Role="Author" Type="Self.Author" Multiplicity="1" />
-          <End Role="Books" Type="Self.Book" Multiplicity="*" />
+          <End Type="Self.Author" Multiplicity="1" Role="Author" />
+          <End Type="Self.Book" Multiplicity="*" Role="Books" />
           <ReferentialConstraint>
             <Principal Role="Author">
               <PropertyRef Name="ID" />
@@ -532,8 +530,8 @@
             <End Role="Books_AttributesValue" EntitySet="Books_AttributesValue" />
           </AssociationSet>
           <AssociationSet Name="FK_Books_Author" Association="Self.FK_Books_Author">
-            <End Role="Author" EntitySet="Authors" />
-            <End Role="Books" EntitySet="Books" />
+            <End EntitySet="Authors" Role="Author" />
+            <End EntitySet="Books" Role="Books" />
           </AssociationSet>
           <AssociationSet Name="FK_Books_AttributesValue_Books" Association="Self.FK_Books_AttributesValue_Books">
             <End Role="Books" EntitySet="Books" />
@@ -627,7 +625,6 @@
               <MappingFragment StoreEntitySet="Author">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

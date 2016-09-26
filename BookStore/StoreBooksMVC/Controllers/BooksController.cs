@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using DataAccessLayer;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
+using PagedList;
+
 
 namespace StoreBooksMVC.Controllers
 {
@@ -20,9 +22,22 @@ namespace StoreBooksMVC.Controllers
         private const string imageUnavailable = "noBook.jpg";
 
         // GET: Books
-        public async Task<ActionResult> Index(string sortedQuery, string searchQuery)
+        public ActionResult Index(string sortedQuery, string currentFilter, string searchQuery, int page = 1)
         {
             var books = db.Books.Include(b => b.Author).Include(b => b.Country).Include(b => b.Genre);
+
+            ViewBag.CurrentSort = sortedQuery;
+
+            if (searchQuery != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchQuery = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchQuery;
 
             ViewBag.NameSortParam = String.IsNullOrEmpty(sortedQuery) ? "Title_desc" : "";
             ViewBag.NameSortParam = sortedQuery == "Author" ? "Author_desc" : "Author";
@@ -50,11 +65,11 @@ namespace StoreBooksMVC.Controllers
                     break;
             }
 
-            
+            int pageSize = 5;
 
-            return View(await books.ToListAsync());
+            return View(books.ToPagedList(page, pageSize));
         }
-        
+
         // GET: Books/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -106,7 +121,7 @@ namespace StoreBooksMVC.Controllers
                 return RedirectToAction("Index");
             }
 
-            
+
             ViewBag.AuthorID = new SelectList(db.Authors, "ID", "FullName", book.AuthorID);
             ViewBag.CountryID = new SelectList(db.Countries, "ID", "Country1", book.CountryID);
             ViewBag.GenreID = new SelectList(db.Genres, "ID", "GenreName", book.GenreID);
@@ -152,7 +167,7 @@ namespace StoreBooksMVC.Controllers
                     {
                         System.IO.File.Delete(Path.Combine(Server.MapPath("~/Images"), imagePt));
                     }
-                    
+
                     var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     var path = Path.Combine(Server.MapPath("~/Images"), fileName);
                     file.SaveAs(path);

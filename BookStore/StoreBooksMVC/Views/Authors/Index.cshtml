@@ -15,9 +15,6 @@
         <th>
             @Html.DisplayNameFor(model => model.FullName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CountryID)
-        </th>
         <th></th>
     </tr>
 
@@ -25,9 +22,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CountryID)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

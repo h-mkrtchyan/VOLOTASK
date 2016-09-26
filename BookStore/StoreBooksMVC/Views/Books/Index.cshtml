@@ -1,5 +1,7 @@
-﻿@model IEnumerable<DataAccessLayer.Book>
-
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<DataAccessLayer.Book>
+@*@model IEnumerable<DataAccessLayer.Book>*@
+    
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -17,6 +19,7 @@
     <input type="submit" value="Search" />
 </p>
 }
+
 <table class="table">
     <tr>
         @*<th>
@@ -36,25 +39,32 @@
            
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @*@Html.DisplayNameFor(model => model.Title)*@
+            Title
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Author.FullName)
+            @*@Html.DisplayNameFor(model => model.Author.FullName)*@
+            Author
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Genre.GenreName)
+            @*@Html.DisplayNameFor(model => model.Genre.GenreName)*@
+            Genre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @*@Html.DisplayNameFor(model => model.Description)*@
+            Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PageCount)
+            @*@Html.DisplayNameFor(model => model.PageCount)*@
+            Pages
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Country.Country1)
+            @*@Html.DisplayNameFor(model => model.Country.Country1)*@
+            Country
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @*@Html.DisplayNameFor(model => model.Price)*@
+            Price
         </th>
         <th></th>
     </tr>
@@ -96,3 +106,8 @@
 }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

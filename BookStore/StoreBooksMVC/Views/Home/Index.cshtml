@@ -11,6 +11,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="~/Content/IndexStyle.css" />
     <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width" />
     <title>Book Store</title>
@@ -44,6 +45,8 @@
         <div id="center" class="a">
             <h1>Welcome To The Book Store</h1>
             <h2>The only important thing in a book is the meaning that it has for you.</h2>
+            @using (Html.BeginForm("Index", "Books"))
+            {
                 <div class="a searchbar">
                     <div class="col-xs-8 col-xs-offset-2">
                         <div class="input-group">
@@ -60,19 +63,42 @@
                                     <li><a href="#all">Anything</a></li>
                                 </ul>
                             </div>
-                            <input type="hidden" name="search_param" value="all" id="search_param">
-                            <input type="text" class="form-control" name="searchQuery" placeholder="Search Books..." style="font-size: 2em">
-                            <span class="input-group-btn">
-                                <button id="btn" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"> Search</span></button>
-                            </span>
+                            <form data-bind="submit: search">
+
+
+
+                                <input type="hidden" name="search_param" value="all" id="search_param">
+                                <input type="text" id="searchInput" class="form-control" name="searchQuery" placeholder="Search Books..." style="font-size: 2em">
+                                <span class="input-group-btn">
+                                    <button id="btn" class="btn btn-default" type="submit" disabled="disabled"><span class="glyphicon glyphicon-search"> Search</span></button>
+                                </span>
+                            </form>
+                            <script type="text/javascript">
+
+                                console.info($);
+
+                                $(document).ready(function () {
+                                    $('#searchInput').keyup(function () {
+                                        if ($('#searchInput').val().length < 1) {
+                                            $('#btn').prop('disabled', true)
+                                        } else {
+                                            $('#btn').prop('disabled', false)
+                                        }
+                                    })
+                                });
+
+
+                            </script>
                         </div>
                     </div>
                 </div>
-            </div>
-                <footer>
-                    <div id="copyright">
-                        <p>&copy; @DateTime.Now.Year - Book Store by Hakob MKR, within VOLO CBC</p>
-                    </div>
-                </footer>
-        </body>
-    </html>
+            }
+        </div>
+    </div>
+    <footer>
+        <div id="copyright">
+            <p>&copy; @DateTime.Now.Year - Book Store by Hakob MKR, within VOLO CBC</p>
+        </div>
+    </footer>
+</body>
+</html>

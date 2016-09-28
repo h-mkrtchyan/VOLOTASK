@@ -15,6 +15,7 @@ using PagedList;
 
 namespace StoreBooksMVC.Controllers
 {
+    
     public class BooksController : Controller
     {
         private BookStoreEntities db = new BookStoreEntities();
@@ -68,7 +69,7 @@ namespace StoreBooksMVC.Controllers
 
             return View(books.ToPagedList(page, pageSize));
         }
-
+ 
         // GET: Books/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -85,6 +86,7 @@ namespace StoreBooksMVC.Controllers
         }
 
         // GET: Books/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.AuthorID = new SelectList(db.Authors, "ID", "FullName");
@@ -98,6 +100,7 @@ namespace StoreBooksMVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "ID,Title,AuthorID,GenreID,ImagePath,PageCount,Description,CountryID,Price")] Book book, HttpPostedFileBase file)
         {
@@ -128,6 +131,7 @@ namespace StoreBooksMVC.Controllers
         }
 
         // GET: Books/Edit/5
+        [Authorize]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -149,6 +153,7 @@ namespace StoreBooksMVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "ID,Title,AuthorID,GenreID,ImagePath,PageCount,Description,CountryID,Price")] Book book, HttpPostedFileBase file)
         {
@@ -188,6 +193,7 @@ namespace StoreBooksMVC.Controllers
         }
 
         // GET: Books/Delete/5
+        [Authorize]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -204,6 +210,7 @@ namespace StoreBooksMVC.Controllers
 
         // POST: Books/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {

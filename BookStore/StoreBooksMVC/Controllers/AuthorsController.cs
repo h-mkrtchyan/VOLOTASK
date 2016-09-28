@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DataAccessLayer;
+using PagedList;
 
 namespace StoreBooksMVC.Controllers
 {
@@ -16,9 +17,26 @@ namespace StoreBooksMVC.Controllers
         private BookStoreEntities db = new BookStoreEntities();
 
         // GET: Authors
-        public async Task<ActionResult> Index()
+        public ActionResult Index(string sortedQuery, string currentFilter, int page = 1)
         {
-            return View(await db.Authors.ToListAsync());
+
+            ViewBag.CurrentSort = sortedQuery;
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortedQuery) ? "FullName_desc" : "";
+            //ViewBag.NameSortParm = sortedQuery == "ISO" ? "ISO_desc" : "ISO";
+
+            var authors = from a in db.Authors select a;
+
+            switch (sortedQuery)
+            {
+                default:
+                    authors = authors.OrderBy(a => a.FullName);
+                    break;
+            }
+
+            int pageSize = 50;
+
+            return View(authors.ToPagedList(page, pageSize));
         }
 
         // GET: Authors/Details/5

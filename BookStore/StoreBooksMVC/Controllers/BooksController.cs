@@ -49,7 +49,6 @@ namespace StoreBooksMVC.Controllers
                 books = books.Where(s => s.Title.ToUpper().Contains(searchQuery.ToUpper())
                                 || s.Author.FullName.ToUpper().Contains(searchQuery.ToUpper())
                                 || s.Genre.GenreName.ToUpper().Contains(searchQuery.ToUpper()));
-
             }
 
             switch (sortedQuery)

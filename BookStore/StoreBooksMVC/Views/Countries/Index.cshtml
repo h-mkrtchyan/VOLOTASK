@@ -1,0 +1,67 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<DataAccessLayer.Country>
+
+@*@model IEnumerable<DataAccessLayer.Country>*@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Ajax.BeginForm("Index", new AjaxOptions { UpdateTargetId = "table" }))
+{
+    <p>
+        @Html.TextBox("SearchQuery")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Country1)*@
+            Country
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.ISO)*@
+            ISO
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.PhoneCode)*@
+            PhoneCode
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneCode)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

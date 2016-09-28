@@ -1,0 +1,229 @@
+﻿@font-face {
+    font-family: myFont;
+    src: url("../Content/assets/fonts/Nirmala.ttf") format('truetype');
+}
+@font-face {
+    font-family: myFontContent;
+    src: url("../Content/assets/fonts/OpenSans-Semibold.ttf") format('truetype');
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: darkcyan !important;
+}
+
+#nonActiveLink {
+    pointer-events: none;
+    cursor: default;
+}
+
+#mainHeader {
+    position: fixed;
+    /*background-color: red*/
+    width: 100%;
+    height: 80px;
+}
+
+#leftPart {
+    width: 50%;
+    height:60px;
+    /*background-color: yellow;*/
+    float: left;
+}
+
+
+#rightPart {
+    width: 50%;
+    height: 60px;
+    /*background-color: blue;*/
+    float: right;
+}
+
+#container {
+    display: block;
+    width:100%;
+}
+
+#center h1 {
+    position: absolute;
+    width: 100%;
+    top: 8em;
+    font-family: myFont;
+    color: #FFFFFF;
+    text-decoration: none;
+    text-align:center
+}
+
+#center h2{
+    position: absolute;
+    width: 100%;
+    top: 12em;
+    font-family: myFont;
+    font-weight: 100;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+#center h1::after{
+    display: block;
+    content: "";
+    height: 2px;
+    width: 100px;
+    background-color: #F1C40F;
+    margin: 20px auto 30px;
+}
+
+.searchbar {
+    display: block;
+    position: absolute;
+    float: right;
+    top: 32em;
+    left: 25%;
+}
+
+#btn {
+    font-family: myFont;
+    background-color: red;
+}
+
+#searchInput {
+   border: 1px solid #E77E23;
+   outline: none;
+   border-radius: 3px;
+   -webkit-border-radius: 3px; 
+   -moz-border-radius: 3px; 
+   background: #FFFFFF !important;
+   height: 34px;
+   width: 980px; 
+   color: #595959; 
+   font-size: 4em;
+   font-weight: bold;
+   font-family: myFont; 
+}
+
+#searchBtn, #signup, #signin{
+    margin-left: 1em;
+    cursor: pointer;
+    border: 1px solid #d43f3a;
+    outline: none;
+    border-radius: 3px;
+    -webkit-border-radius: 3px; 
+    -moz-border-radius: 3px; 
+    background-color: #d9534f;
+    width: 10em;
+    height: 40px;
+    color: #FFFFFF;
+    font-family: myFont;
+    font-size: 2em;
+}
+
+#searchBtn:hover{
+    background-color: #d43f3a ;
+}
+
+#logo {
+    position: absolute;
+    width: 100px;
+    left: 14%;
+    top: 1em;
+}
+
+#sup {
+    position: absolute;
+    top: 1em;
+    right: 13%;
+}
+
+#sin {
+    width: 8em;
+    background-color: #5cb85c;
+    outline: none;
+    position: absolute;
+    top: 1em;
+    right: 6%;
+}
+
+#sin:hover {
+    background-color: #4cae4c;
+}
+
+
+#menu {
+    position: absolute;
+    top: 2em;
+    left: 8em;
+}
+
+/* Style The Dropdown Button */
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.dropbtn{
+    border-radius: 12px;
+}
+
+#copyright {
+    position: absolute;
+    top: 95%;
+    left: 40%;
+    font-family: myFontContent;
+    font-weight: 200;
+    color: white;
+}
+
+#booksrnd {
+    width: 80%;
+    /*background-color:black;*/
+    position: absolute;
+    top: 53%;
+    left: 17%;
+}
+
+.dropdown-toggle {
+    display: none;
+}

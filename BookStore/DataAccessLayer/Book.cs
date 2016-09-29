@@ -25,8 +25,8 @@ namespace DataAccessLayer
         public int AuthorID { get; set; }
         public int GenreID { get; set; }
 
-        [Required(ErrorMessage = "Choose only Image type files!")]
-        [Display(Name ="Image")]
+
+        [Display(Name = "Image")]
         [DataType(DataType.ImageUrl)]
         public string ImagePath { get; set; }
         public Nullable<int> PageCount { get; set; }

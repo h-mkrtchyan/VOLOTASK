@@ -67,6 +67,11 @@ namespace StoreBooksMVC.Controllers
 
             int pageSize = 5;
 
+            if (page > books.ToPagedList(page, pageSize).PageCount)
+            {
+                page = 1;
+            }
+
             return View(books.ToPagedList(page, pageSize));
         }
  

@@ -11,7 +11,7 @@ namespace DataAccessLayer
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Book
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,10 +24,16 @@ namespace DataAccessLayer
         public string Title { get; set; }
         public int AuthorID { get; set; }
         public int GenreID { get; set; }
+
+        [Required(ErrorMessage = "Choose only Image type files!")]
+        [Display(Name ="Image")]
+        [DataType(DataType.ImageUrl)]
         public string ImagePath { get; set; }
         public Nullable<int> PageCount { get; set; }
         public string Description { get; set; }
         public int CountryID { get; set; }
+        [Required]
+        [DataType(DataType.Currency)]
         public Nullable<decimal> Price { get; set; }
     
         public virtual Author Author { get; set; }

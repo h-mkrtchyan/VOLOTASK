@@ -6,9 +6,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -95,7 +93,10 @@
             @Html.DisplayFor(modelItem => item.Country.Country1)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Price)
+            @{  decimal? totalPrice = item.Price + item.Country.PhoneCode;
+                var price = totalPrice.ToString();
+            }
+            @Html.DisplayFor(modelItem => price)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
@@ -107,7 +108,8 @@
 
 </table>
 <br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
 
 @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+<br/>

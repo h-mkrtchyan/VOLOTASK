@@ -11,11 +11,11 @@ using DataAccessLayer;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
 using PagedList;
-
+using System.Web.Helpers;
 
 namespace StoreBooksMVC.Controllers
 {
-    
+    [HandleError]
     public class BooksController : Controller
     {
         private BookStoreEntities db = new BookStoreEntities();
@@ -110,7 +110,12 @@ namespace StoreBooksMVC.Controllers
                 {
                     var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     var path = Path.Combine(Server.MapPath("~/Images"), fileName);
-                    file.SaveAs(path);
+
+                    WebImage img = new WebImage(file.InputStream);
+                    if (img.Width > 400)
+                    { img.Resize(100, 150); }
+
+                    img.Save(path);
                     book.ImagePath = fileName;
 
                 }
@@ -174,7 +179,11 @@ namespace StoreBooksMVC.Controllers
 
                     var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     var path = Path.Combine(Server.MapPath("~/Images"), fileName);
-                    file.SaveAs(path);
+                    WebImage img = new WebImage(file.InputStream);
+                    if (img.Width > 400)
+                    { img.Resize(100, 150); }
+
+                    img.Save(path);
                     book.ImagePath = fileName;
                 }
                 else

@@ -12,6 +12,7 @@ using System.IO;
 using System.ComponentModel.DataAnnotations;
 using PagedList;
 using System.Web.Helpers;
+using StoreBooksMVC.Models;
 
 namespace StoreBooksMVC.Controllers
 {
@@ -50,6 +51,11 @@ namespace StoreBooksMVC.Controllers
                 books = books.Where(s => s.Title.ToUpper().Contains(searchQuery.ToUpper())
                                 || s.Author.FullName.ToUpper().Contains(searchQuery.ToUpper())
                                 || s.Genre.GenreName.ToUpper().Contains(searchQuery.ToUpper()));
+
+                if (!books.Any())
+                {
+                    ViewBag.NotFoundMessage = searchQuery + "Data not found";
+                }
             }
 
             switch (sortedQuery)
@@ -111,6 +117,7 @@ namespace StoreBooksMVC.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 if (file != null && file.ContentLength > 0)
                 {
                     var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);

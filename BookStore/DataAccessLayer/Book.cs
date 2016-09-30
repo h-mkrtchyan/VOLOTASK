@@ -12,6 +12,11 @@ namespace DataAccessLayer
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using DataAccessLayer;
+    using System.Web;
+    using Models;
+
     public partial class Book
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,15 +30,19 @@ namespace DataAccessLayer
         public int AuthorID { get; set; }
         public int GenreID { get; set; }
 
-
-        [Display(Name = "Image")]
-        [DataType(DataType.ImageUrl)]
+        
+        [Required(ErrorMessage = "Please browse your image")]
+        [Display(Name = "Upload Image")]
+        [NotMapped]
+        [ValidateImage]
         public string ImagePath { get; set; }
         public Nullable<int> PageCount { get; set; }
         public string Description { get; set; }
         public int CountryID { get; set; }
-        [Required]
+        
+        [Required(ErrorMessage = "Price can't be empty!")]
         [DataType(DataType.Currency)]
+        [RegularExpression(@"^\d+(\.\d{1,2})?$", ErrorMessage = "enter decimal value of format $9.99")]
         public Nullable<decimal> Price { get; set; }
     
         public virtual Author Author { get; set; }

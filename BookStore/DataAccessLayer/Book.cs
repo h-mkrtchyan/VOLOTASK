@@ -30,8 +30,6 @@ namespace DataAccessLayer
         public int AuthorID { get; set; }
         public int GenreID { get; set; }
 
-        
-        [Required(ErrorMessage = "Please browse your image")]
         [Display(Name = "Upload Image")]
         [NotMapped]
         [ValidateImage]
@@ -42,7 +40,6 @@ namespace DataAccessLayer
         
         [Required(ErrorMessage = "Price can't be empty!")]
         [DataType(DataType.Currency)]
-        [RegularExpression(@"^\d+(\.\d{1,2})?$", ErrorMessage = "enter decimal value of format $9.99")]
         public Nullable<decimal> Price { get; set; }
     
         public virtual Author Author { get; set; }

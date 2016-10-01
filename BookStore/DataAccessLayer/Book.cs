@@ -40,6 +40,7 @@ namespace DataAccessLayer
         
         [Required(ErrorMessage = "Price can't be empty!")]
         [DataType(DataType.Currency)]
+        [RegularExpression(@"^\d+(\.\d{1,2})?$", ErrorMessage = "enter decimal value of format $9.99")]
         public Nullable<decimal> Price { get; set; }
     
         public virtual Author Author { get; set; }

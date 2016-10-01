@@ -18,9 +18,9 @@ namespace DataAccessLayer.Models
 
             var file = value as HttpPostedFileBase;
 
-            if (!extensions.Contains(file.FileName.Substring(file.FileName.LastIndexOf('.'))))
+            if (file != null && !extensions.Contains(file.FileName.Substring(file.FileName.LastIndexOf('.'))))
             {
-                ErrorMessage = "Please upload Your Photo of type: " + string.Join(", ", extensions);
+                ErrorMessage = "Please upload Your Image of type: " + string.Join(", ", extensions);
                 return false;
             }
             else

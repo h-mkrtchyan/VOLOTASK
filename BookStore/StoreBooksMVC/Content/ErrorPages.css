@@ -1,0 +1,23 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+#runtime {
+    
+}
+
+#nfp {
+    background-image: url("../Content/assets/img/404.png");
+}
+
+#back {
+    position: absolute;
+    top: 44%;
+    left: 32%;
+}
+#home{
+    position: absolute;
+    top: 44%;
+    left: 38%;
+}

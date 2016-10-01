@@ -11,7 +11,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="~/Content/IndexStyle.css" />
     <link rel="stylesheet" href="~/Content/bootstrap.min.css">
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width" />
     <title>Book Store</title>
@@ -25,7 +25,7 @@
                     <div class="dropdown-content">
                         <a href="/" id="nonActiveLink">Home</a>
                         <a href="/Books">Catalogue</a>
-                        <a href="/Home/About">About</a>
+                        <a href="Authors">Authors</a>
                     </div>
                 </div>
             </div>
@@ -43,13 +43,13 @@
     </header>
     <div id="container" class="a">
         <div id="center" class="a">
-            <h1>Welcome To The Book Store</h1>
+            <h1>Welcome To The Book Catalogue</h1>
             <h2>The only important thing in a book is the meaning that it has for you.</h2>
             @using (Html.BeginForm("Index", "Books"))
             {
                 <div class="a searchbar">
                     <div class="col-xs-8 col-xs-offset-2">
-                        <div class="input-group">
+                        <div id="search" class="input-group">
                             <div class="input-group-btn search-panel">
                                 @*<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                         <span id="search_concept">Filter by</span> <span class="caret"></span>
@@ -64,21 +64,18 @@
                                 </ul>
                             </div>
                             <form data-bind="submit: search">
-
-
-
                                 <input type="hidden" name="search_param" value="all" id="search_param">
                                 <input type="text" id="searchInput" class="form-control" name="searchQuery" placeholder="Search Books..." style="font-size: 2em">
                                 <span class="input-group-btn">
-                                    <button id="btn" class="btn btn-default" type="submit" disabled="disabled"><span class="glyphicon glyphicon-search"> Search</span></button>
+                                    <button id="btn" class="btn btn-default" type="submit" disabled="disabled"><span class="glyphicon glyphicon-search" > Search</span></button>
                                 </span>
                             </form>
                             <script type="text/javascript">
-
-                   
-
+                                window.onload = function () {
+                                    document.getElementById("searchInput").focus();
+                                };
                                 $(document).ready(function () {
-                                    $('#searchInput').keyup(function () {
+                                    $('#searchInput').keyup(function() {
                                         if ($('#searchInput').val().length < 1) {
                                             $('#btn').prop('disabled', true)
                                         } else {
@@ -86,8 +83,6 @@
                                         }
                                     })
                                 });
-
-
                             </script>
                         </div>
                     </div>
@@ -97,7 +92,7 @@
     </div>
     <footer>
         <div id="copyright">
-            <p>&copy; @DateTime.Now.Year - Book Store by Hakob MKR, within VOLO CBC</p>
+            <p>&copy; @DateTime.Now.Year - Book Catalogue by Hakob MKR, within VOLO CBC</p>
         </div>
     </footer>
 </body>

@@ -15,6 +15,10 @@ body {
     background-color: darkcyan !important;
 }
 
+#search {
+    right: 33%;
+}
+
 #nonActiveLink {
     pointer-events: none;
     cursor: default;
@@ -85,8 +89,29 @@ body {
 }
 
 #btn {
-    font-family: myFont;
-    background-color: red;
+    background-color: lime
+}
+#bt {
+    font-family: Roboto;
+    color: #FFFFFF;
+    font-weight: bolder;
+    font-size: 1.5em;
+}
+
+.glyphicon{
+    position: relative;
+    color: #ffffff;
+    height: 20px;
+    font-family: sans-serif;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-size: 1.3em;
+    font-weight: bolder !important;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    
 }
 
 #searchInput {
@@ -96,7 +121,7 @@ body {
    -webkit-border-radius: 3px; 
    -moz-border-radius: 3px; 
    background: #FFFFFF !important;
-   height: 34px;
+   height: 37px;
    width: 980px; 
    color: #595959; 
    font-size: 4em;

@@ -93,8 +93,8 @@
             @Html.DisplayFor(modelItem => item.Country.Country1)
         </td>
         <td>
-            @{  decimal? totalPrice = item.Price + item.Country.PhoneCode;
-                var price = totalPrice;
+            @{  decimal totalPrice = item.Price + item.Country.PhoneCode;
+                var price = totalPrice.ToString("C2");
             }
             @Html.DisplayFor(modelItem => price)
         </td>

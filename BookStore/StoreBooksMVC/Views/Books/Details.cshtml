@@ -1,6 +1,5 @@
 ﻿@model DataAccessLayer.Book
 
-
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -49,7 +48,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Price)
+            @{  decimal totalPrice = Model.Price + Model.Country.PhoneCode;
+                var price = totalPrice.ToString("C2");
+            }
+            @Html.DisplayFor(modelItem => price)
         </dd>
 
         <dt>

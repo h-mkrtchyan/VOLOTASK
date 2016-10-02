@@ -54,7 +54,7 @@
             @Html.LabelFor(model => model.PageCount, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PageCount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PageCount, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.PageCount, "", new { cols = "20", rows = "15", maxlength = "2000", @class = "text-danger" })
             </div>
         </div>
 

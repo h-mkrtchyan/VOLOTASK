@@ -30,7 +30,7 @@ namespace DataAccessLayer
         public int AuthorID { get; set; }
         public int GenreID { get; set; }
 
-        [Display(Name = "Upload Image")]
+        [Display(Name = "Image")]
         [NotMapped]
         [ValidateImage]
         public string ImagePath { get; set; }

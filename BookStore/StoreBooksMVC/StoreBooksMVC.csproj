@@ -208,7 +208,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
-    <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -324,11 +323,6 @@
     <Content Include="Views\Authors\Details.cshtml" />
     <Content Include="Views\Authors\Edit.cshtml" />
     <Content Include="Views\Authors\Index.cshtml" />
-    <Content Include="Views\Countries\Create.cshtml" />
-    <Content Include="Views\Countries\Delete.cshtml" />
-    <Content Include="Views\Countries\Details.cshtml" />
-    <Content Include="Views\Countries\Edit.cshtml" />
-    <Content Include="Views\Countries\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Errors\Error404.html" />
   </ItemGroup>

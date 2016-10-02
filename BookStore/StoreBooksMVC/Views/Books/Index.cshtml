@@ -44,29 +44,30 @@
             @*@Html.DisplayNameFor(model => model.Author.FullName)*@
             Author
         </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.Genre.GenreName)*@
+        @*@*<th>
+            @Html.DisplayNameFor(model => model.Genre.GenreName)
             Genre
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Description)*@
+            @Html.DisplayNameFor(model => model.Description)
             Description
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.PageCount)*@
+            @Html.DisplayNameFor(model => model.PageCount)
             Pages
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Country.Country1)*@
+            @Html.DisplayNameFor(model => model.Country.Country1)
             Country
-        </th>
+        </th>*@
         <th>
             @*@Html.DisplayNameFor(model => model.Price)*@
             Price
         </th>
         <th></th>
+        @ViewBag.NotFoundMessage
     </tr>
-    @ViewBag.NotFoundMessage
+    
 @foreach (var item in Model) {
     <tr>
         <td>
@@ -78,20 +79,18 @@
         <td>
             @Html.DisplayFor(modelItem => item.Author.FullName)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Genre.GenreName)
-           
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
-            
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PageCount)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Country.Country1)
-        </td>
+        </td>*@
         <td>
             @{  decimal totalPrice = item.Price + item.Country.PhoneCode;
                 var price = totalPrice.ToString("C2");

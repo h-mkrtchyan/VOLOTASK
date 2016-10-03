@@ -4,7 +4,7 @@
 }
 
 #runtime {
-    
+    background-image: url('assets/img/bad.jpg');
 }
 
 #nfp {
@@ -16,8 +16,26 @@
     top: 44%;
     left: 32%;
 }
+#bhome{
+    position: absolute;
+    top: 81%;
+    left: 52%;
+}
+
+#bback {
+    position: absolute;
+    top: 81%;
+    left: 42%;
+}
 #home{
     position: absolute;
     top: 44%;
     left: 38%;
+}
+
+#container h1{
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-weight: bold;
+
 }

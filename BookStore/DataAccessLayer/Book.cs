@@ -26,21 +26,31 @@ namespace DataAccessLayer
         }
     
         public int ID { get; set; }
+
+        [Required(ErrorMessage = "Title Cant be empty: MAX 40 Characters")]
         public string Title { get; set; }
+
+        [Display(Name = "Author")]
         public int AuthorID { get; set; }
+
+        [Display(Name = "Genre")]
         public int GenreID { get; set; }
 
         [Display(Name = "Image")]
         [NotMapped]
         [ValidateImage]
         public string ImagePath { get; set; }
+
+        [Display(Name = "Pages")]
         public Nullable<int> PageCount { get; set; }
         public string Description { get; set; }
+
+        [Display(Name = "Country")]
         public int CountryID { get; set; }
         
         [Required(ErrorMessage = "Price can't be empty!")]
         [DataType(DataType.Currency)]
-        [RegularExpression(@"^\d+(\.\d{1,2})?$", ErrorMessage = "enter decimal value of format $9.99")]
+        [RegularExpression(@"^\d+(\.\d{1,2})?$", ErrorMessage = "Enter Price for this format $XX.XX")]
         public decimal Price { get; set; }
     
         public virtual Author Author { get; set; }

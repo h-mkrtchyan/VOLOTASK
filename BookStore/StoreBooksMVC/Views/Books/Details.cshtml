@@ -12,6 +12,16 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @*@Html.DisplayNameFor(model => model.ImagePath)*@
+            
+        </dt>
+
+        <dd>
+            <img src="~/Images/@Model.ImagePath" alt="Img" width="100" height="150" />
+  
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
 
@@ -20,11 +30,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ImagePath)
+            @Html.DisplayNameFor(model => model.Author.FullName)
         </dt>
 
         <dd>
-            <img src="~/Images/@Model.ImagePath" alt="Img" width="100" height="150" />
+            @Html.DisplayFor(model => model.Author.FullName)
         </dd>
 
         <dt>
@@ -44,25 +54,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @{  decimal totalPrice = Model.Price + Model.Country.PhoneCode;
-                var price = totalPrice.ToString("C2");
-            }
-            @Html.DisplayFor(modelItem => price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Author.FullName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Author.FullName)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Country.Country1)
         </dt>
 
@@ -78,6 +69,16 @@
             @Html.DisplayFor(model => model.Genre.GenreName)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @{  decimal totalPrice = Model.Price + Model.Country.PhoneCode;
+                var price = totalPrice.ToString("C2");
+            }
+            @Html.DisplayFor(modelItem => price)
+        </dd>
     </dl>
 </div>
 <p>

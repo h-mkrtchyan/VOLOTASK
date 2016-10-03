@@ -27,12 +27,14 @@ namespace DataAccessLayer
     
         public int ID { get; set; }
 
-        [Required(ErrorMessage = "Title Cant be empty: MAX 40 Characters")]
+        [Required(ErrorMessage = "Title can't be empty: MAX 40 Characters!")]
         public string Title { get; set; }
 
+        [Required(ErrorMessage = "Author can't be empty!")]
         [Display(Name = "Author")]
         public int AuthorID { get; set; }
 
+        [Required(ErrorMessage = "Genre can't be empty!")]
         [Display(Name = "Genre")]
         public int GenreID { get; set; }
 
@@ -43,6 +45,8 @@ namespace DataAccessLayer
 
         [Display(Name = "Pages")]
         public Nullable<int> PageCount { get; set; }
+
+        [Required(ErrorMessage = "Decription can't be empty!")]
         public string Description { get; set; }
 
         [Display(Name = "Country")]

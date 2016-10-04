@@ -243,6 +243,7 @@
     <Content Include="Content\ErrorPages.css" />
     <Content Include="Content\IndexStyle.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\StickyFooter.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

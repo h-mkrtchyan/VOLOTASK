@@ -11,8 +11,14 @@
     padding: 0;
 }
 
+html{
+    position: relative;
+    min-height: 100%;
+}
+
 body {
     background-color: currentColor !important;
+    margin-bottom: 60px;
 }
 
 #search {
@@ -276,5 +282,11 @@ body {
 
 .dropdown-toggle {
     display: none;
+}
+
+.container {
+    padding: 20px;
+    min-height: 100%;
+    margin: 0 auto -50px;
 }
 

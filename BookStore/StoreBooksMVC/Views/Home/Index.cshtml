@@ -9,8 +9,8 @@
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="~/Content/IndexStyle.css" />
     <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/IndexStyle.css" />
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width" />
@@ -20,14 +20,14 @@
     <header id="mainHeader">
         <div id="leftPart">
             <div id="menu">
-                <div class="dropdown">
+                <a href="/Books" id="btn-cat" class="btn btn-danger"><span class="glyphicon glyphicon-book"></span> Catalogue</a>
+                <a href="Authors" id="btn-aut" class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-user"></span> Author</a>
+                @*<div class="dropdown">
                     <button class="dropbtn"><img src="~/Content/assets/img/menu.png" /></button>
                     <div class="dropdown-content">
                         <a href="/" id="nonActiveLink">Home</a>
-                        <a href="/Books">Catalogue</a>
-                        <a href="Authors">Authors</a>
                     </div>
-                </div>
+                </div>*@
             </div>
         </div>
         <div class="a" id="logo">
@@ -35,10 +35,22 @@
         </div>
 
         <div class="a" id="rightPart">
+            @if (!User.Identity.IsAuthenticated)
+            {
             <div class="a" id="register">
                 <a href="/Account/Register" id="sup" class="a btn btn-primary btn-primary"><span class="glyphicon glyphicon-pencil"></span> SIGN UP</a>
                 <a href="/Account/Login" id="sin" class="a btn btn-primary btn-primary"><span class="glyphicon glyphicon-log-in"></span> SIGN IN</a>
             </div>
+            }
+            else
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right"}))
+                {
+                    @Html.AntiForgeryToken()
+                <a href="javascript:document.getElementById('logoutForm').submit()", 
+                    id="sout" class="btn btn-warning"><span class="glyphicon glyphicon-log-out"></span> Log off</a>
+                }
+            }
         </div>
     </header>
     <div id="container" class="a">
@@ -67,7 +79,7 @@
                                 <input type="hidden" name="search_param" value="all" id="search_param">
                                 <input type="text" id="searchInput" class="form-control" name="searchQuery" placeholder="Search Books..." style="font-size: 2em">
                                 <span class="input-group-btn">
-                                    <button id="btn" class="btn btn-default" type="submit" disabled="disabled"><span class="glyphicon glyphicon-search" > Search</span></button>
+                                    <button id="btn" class="btn btn-success" type="submit" disabled="disabled"><span class="glyphicon glyphicon-search" > Search</span></button>
                                 </span>
                             </form>
                             <script type="text/javascript">

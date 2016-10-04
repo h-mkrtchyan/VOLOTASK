@@ -12,7 +12,7 @@
 }
 
 body {
-    background-color: darkcyan !important;
+    background-color: currentColor !important;
 }
 
 #search {
@@ -89,8 +89,24 @@ body {
 }
 
 #btn {
-    background-color: lime
+    background-color: #5cb85c;
 }
+
+.btn-success ::after {
+    background-color: #4cae4c;
+}
+
+#btn-cat {
+    position: absolute;
+    left: 321%;
+    bottom: 2%;
+}
+
+#btn-aut {
+    position: relative;
+    left: 469%;
+}
+
 #bt {
     font-family: Roboto;
     color: #FFFFFF;
@@ -165,6 +181,15 @@ body {
 #sin {
     width: 8em;
     background-color: #5cb85c;
+    outline: none;
+    position: absolute;
+    top: 1em;
+    right: 6%;
+}
+
+#sout {
+    width: 8em;
+    /*background-color: #5cb85c;*/
     outline: none;
     position: absolute;
     top: 1em;

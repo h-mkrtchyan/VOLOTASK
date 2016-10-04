@@ -3,10 +3,10 @@
 @*@model IEnumerable<DataAccessLayer.Book>*@
     
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Index</h2>
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -18,6 +18,8 @@
 </p>
 }
 
+@if (Model.Count > 0)
+{
 <table class="table">
     <tr>
         @*<th>
@@ -65,10 +67,10 @@
             Price
         </th>
         <th></th>
-        @ViewBag.NotFoundMessage
     </tr>
     
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             <img src="~/Images/@item.ImagePath" alt="Img" width="100" height="150" />
@@ -98,14 +100,20 @@
             @Html.DisplayFor(modelItem => price)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @if(User.Identity.IsAuthenticated)
+            { 
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID })<p>|</p>
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })<p>|</p>
+            }
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
         </td>
     </tr>
 }
-
 </table>
+}
+else{ 
+    @ViewBag.NotFoundMessage
+}
 <br />
 @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
 

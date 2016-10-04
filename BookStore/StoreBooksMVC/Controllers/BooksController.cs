@@ -45,7 +45,7 @@ namespace StoreBooksMVC.Controllers
             ViewBag.NameSortParam = sortedQuery == "Author" ? "Author_desc" : "Author";
 
             books = from s in db.Books select s;
-
+            ViewBag.NotFoundMessage = "";
             if (!String.IsNullOrEmpty(searchQuery))
             {
                 books = books.Where(s => s.Title.ToUpper().Contains(searchQuery.ToUpper())

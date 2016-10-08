@@ -11,7 +11,6 @@ namespace DataAccessLayer
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Author
     {
@@ -22,8 +21,6 @@ namespace DataAccessLayer
         }
     
         public int ID { get; set; }
-        [Display(Name = "Author")]
-        [Required(ErrorMessage = "You can add Author, or go to Home Page")]
         public string FullName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

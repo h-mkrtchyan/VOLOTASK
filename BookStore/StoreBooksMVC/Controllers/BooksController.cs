@@ -75,7 +75,7 @@ namespace StoreBooksMVC.Controllers
 
             if (page > books.ToPagedList(page, pageSize).PageCount)
             {
-                Response.RedirectToRoute(page = 1);
+                //Response.RedirectToRoute(page = 1);
                 //page = 1;
             }
 

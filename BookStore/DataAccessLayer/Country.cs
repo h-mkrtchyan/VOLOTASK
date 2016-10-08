@@ -11,7 +11,6 @@ namespace DataAccessLayer
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Country
     {
@@ -22,7 +21,6 @@ namespace DataAccessLayer
         }
     
         public int ID { get; set; }
-        [Display(Name = "Country")]
         public string Country1 { get; set; }
         public string ISO { get; set; }
         public int PhoneCode { get; set; }

@@ -94,18 +94,25 @@
             @Html.DisplayFor(modelItem => item.Country.Country1)
         </td>*@
         <td>
-            @{  decimal totalPrice = item.Price + item.Country.PhoneCode;
-                var price = totalPrice.ToString("C2");
+            @{
+                decimal totalPrice = Convert.ToDecimal(item.Price + item.Country.PhoneCode);
+               var price = totalPrice.ToString("C2");
             }
             @Html.DisplayFor(modelItem => price)
         </td>
         <td>
-            @if(User.Identity.IsAuthenticated)
-            { 
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID })<p>|</p>
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })<p>|</p>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a title="Edit" style="background-color:white;" class="btn" href="@Url.Action("Edit", new { id = @item.ID })">
+                    <span class="glyphicon glyphicon-pencil "></span>
+                </a>
+                <a title="Delete" style="background-color:white;" class="btn" href="@Url.Action("Delete", new { id = @item.ID })">
+                    <span class="glyphicon glyphicon-trash "></span>
+                </a>
             }
-            @Html.ActionLink("Details", "Details", new { id = item.ID })
+            <a title="Details" style="background-color:white;" class="btn" href="@Url.Action("Details", new { id = @item.ID })">
+                <span class="glyphicon glyphicon-list "></span>
+            </a>
         </td>
     </tr>
 }

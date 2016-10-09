@@ -74,7 +74,8 @@
         </dt>
 
         <dd>
-            @{  decimal totalPrice = Model.Price + Model.Country.PhoneCode;
+            @{
+                decimal totalPrice = Convert.ToDecimal(Model.Price + Model.Country.PhoneCode);
                 var price = totalPrice.ToString("C2");
             }
             @Html.DisplayFor(modelItem => price)

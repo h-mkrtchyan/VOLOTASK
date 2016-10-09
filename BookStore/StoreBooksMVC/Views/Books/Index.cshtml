@@ -12,10 +12,12 @@
 </p>
 @using (Ajax.BeginForm("Index", new AjaxOptions { UpdateTargetId = "table" }))
 {
-<p>
-    @Html.TextBox("SearchQuery")
-    <input type="submit" value="Search" />
-</p>
+<div class="form-group-sm" style="    left: 32%;
+    position: relative;
+    margin-bottom: 3%;">
+    <input class="form-control" id="search" name="SearchQuery" type="text" style="float:left" />
+    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"> Search</span></button>
+</div>
 }
 
 @if (Model.Count > 0)
@@ -103,15 +105,15 @@
         <td>
             @if (User.Identity.IsAuthenticated)
             {
-                <a title="Edit" style="background-color:white;" class="btn" href="@Url.Action("Edit", new { id = @item.ID })">
-                    <span class="glyphicon glyphicon-pencil "></span>
+                <a title="Edit" style="background-color: #333333;" class="btn" href="@Url.Action("Edit", new { id = @item.ID })">
+                    <span class="glyphicon glyphicon-pencil " style="color: #f1c40f;"></span>
                 </a>
-                <a title="Delete" style="background-color:white;" class="btn" href="@Url.Action("Delete", new { id = @item.ID })">
-                    <span class="glyphicon glyphicon-trash "></span>
+                <a title="Delete" style="background-color:#333333;" class="btn" href="@Url.Action("Delete", new { id = @item.ID })">
+                    <span class="glyphicon glyphicon-trash " style="color: #f1c40f;"></span>
                 </a>
             }
-            <a title="Details" style="background-color:white;" class="btn" href="@Url.Action("Details", new { id = @item.ID })">
-                <span class="glyphicon glyphicon-list "></span>
+            <a title="Details" style="background-color: #333333;" class="btn" href="@Url.Action("Details", new { id = @item.ID })">
+                <span class="glyphicon glyphicon-list " style="color: #f1c40f;"></span>
             </a>
         </td>
     </tr>

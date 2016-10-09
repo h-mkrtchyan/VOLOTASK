@@ -31,11 +31,18 @@
                 @Html.ActionLink("Book Catalogue", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul id="li" class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
-                    <li>@Html.ActionLink("Books", "Index", "Books")</li>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Books
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Books", "Index", "Books")</li>
+                            <li>@Html.ActionLink("Add new Book", "Create")</li>
+                        </ul>
+                    </li>
                     <li>@Html.ActionLink("Authors", "Create", "Authors")</li>
-                    @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

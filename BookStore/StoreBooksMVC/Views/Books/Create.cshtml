@@ -7,7 +7,7 @@
 
 <script src="~/Scripts/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="~/Scripts/ImageUploadValidation.js" type="text/javascript"></script>
-
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <h2>Create</h2>
 
 @using (Html.BeginForm("Create", "Books", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -45,7 +45,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="file" id="file" accept="image/jpeg,image/pjpeg,image/png,image/bmp,image/x-windows-bmp,image/x-ms-bmp" />
+                <input class="form-control" type="file" name="file" id="file" accept="image/jpeg,image/pjpeg,image/png,image/bmp,image/x-windows-bmp,image/x-ms-bmp" />
                 @Html.ValidationMessageFor(model => model.ImagePath, string.Empty, new { id = "validationTxt", @class = "text-danger" })
             </div>
         </div>
@@ -91,7 +91,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a href="#" onClick="history.go(-1)"><img src="~/Content/assets/img/left-arrow.png" alt="Book Store logo" width="50px" /></a>
 </div>
 
 @section Scripts {

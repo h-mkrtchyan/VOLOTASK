@@ -297,6 +297,7 @@
     <Content Include="Views\Genres\Details.cshtml" />
     <Content Include="Views\Genres\Edit.cshtml" />
     <Content Include="Views\Genres\Index.cshtml" />
+    <Content Include="Views\Books\bookNotFound.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />

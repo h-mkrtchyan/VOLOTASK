@@ -72,7 +72,7 @@
 {
     <tr>
         <td>
-            <img src="~/Images/@item.ImagePath" alt="Img" width="100" height="150" />
+            <a href="@Url.Action("Details", new { id = @item.ID })"><img src="~/Images/@item.ImagePath" alt="Img" width="100" height="150" /></a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
@@ -119,6 +119,7 @@
 }
 else{ 
     @ViewBag.NotFoundMessage
+    
 }
 <br />
 @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@

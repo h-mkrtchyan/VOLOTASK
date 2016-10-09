@@ -54,7 +54,9 @@ namespace StoreBooksMVC.Controllers
 
                 if (!books.Any())
                 {
-                    ViewBag.NotFoundMessage = searchQuery + " Data not found";
+                    ViewBag.NotFoundMessage = "\""+ searchQuery+"\"" + " book not found";
+
+                    //return PartialView("bookNotFound", searchQuery);
                 }
             }
 

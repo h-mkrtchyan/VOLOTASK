@@ -9,10 +9,10 @@
 
 namespace DataAccessLayer
 {
-    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using DataAccessLayer.Models;
     using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class Book
@@ -24,6 +24,8 @@ namespace DataAccessLayer
         }
     
         public int ID { get; set; }
+
+        [Required(ErrorMessage = "Title can't be empty")]
         public string Title { get; set; }
         public int AuthorID { get; set; }
         public int GenreID { get; set; }
@@ -32,6 +34,7 @@ namespace DataAccessLayer
         [NotMapped]
         [ValidateImage]
         public string ImagePath { get; set; }
+
         [Display(Name = "Pages")]
         public Nullable<int> PageCount { get; set; }
         public string Description { get; set; }
@@ -39,7 +42,7 @@ namespace DataAccessLayer
 
         [Required(ErrorMessage = "Price can't be empty!")]
         [DataType(DataType.Currency)]
-        public Nullable<decimal> Price { get; set; }
+        public decimal Price { get; set; }
     
         public virtual Author Author { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

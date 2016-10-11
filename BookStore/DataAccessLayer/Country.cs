@@ -23,6 +23,7 @@ namespace DataAccessLayer
     
         public int ID { get; set; }
 
+        [Required]
         [Display(Name = "Country")]
         public string Country1 { get; set; }
         public string ISO { get; set; }

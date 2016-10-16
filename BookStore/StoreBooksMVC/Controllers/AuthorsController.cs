@@ -17,6 +17,7 @@ namespace StoreBooksMVC.Controllers
         private BookStoreEntities db = new BookStoreEntities();
 
         // GET: Authors
+        [Authorize]
         public ActionResult Index(string sortedQuery, string currentFilter, int page = 1)
         {
 
@@ -55,6 +56,7 @@ namespace StoreBooksMVC.Controllers
         }
 
         // GET: Authors/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -64,6 +66,7 @@ namespace StoreBooksMVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "ID,FullName")] Author author)
         {
@@ -78,6 +81,7 @@ namespace StoreBooksMVC.Controllers
         }
 
         // GET: Authors/Edit/5
+        [Authorize]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -96,6 +100,7 @@ namespace StoreBooksMVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "ID,FullName")] Author author)
         {
@@ -109,6 +114,7 @@ namespace StoreBooksMVC.Controllers
         }
 
         // GET: Authors/Delete/5
+        [Authorize]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,6 +131,7 @@ namespace StoreBooksMVC.Controllers
 
         // POST: Authors/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {

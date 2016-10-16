@@ -14,7 +14,7 @@
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width" />
-    <title>Book Store</title>
+    <title>Book Catalogue</title>
 </head>
 <body>
     <header id="mainHeader">
@@ -22,12 +22,6 @@
             <ul id="menu">
                 <li><a href="/Books" id="btn-cat" class="btn btn-danger"><span class="glyphicon glyphicon-book"></span> Catalogue</a></li>
                 <li><a href="Authors" id="btn-aut" class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-user"></span> Author</a></li>
-                @*<div class="dropdown">
-                    <button class="dropbtn"><img src="~/Content/assets/img/menu.png" /></button>
-                    <div class="dropdown-content">
-                        <a href="/" id="nonActiveLink">Home</a>
-                    </div>
-                </div>*@
             </ul>
         </div>
         <div class="a" id="logo">
@@ -56,16 +50,13 @@
     <div id="container" class="a">
         <div id="center" class="a">
             <h1>Welcome To The Book Catalogue</h1>
-            <h2>The only important thing in a book is the meaning that it has for you.</h2>
+            <h2>“The only important thing in a book is the meaning that it has for you.”</h2>
             @using (Html.BeginForm("Index", "Books"))
             {
                 <div class="a searchbar">
                     <div class="col-xs-8 col-xs-offset-2">
                         <div id="search" class="input-group">
                             <div class="input-group-btn search-panel">
-                                @*<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                        <span id="search_concept">Filter by</span> <span class="caret"></span>
-                                    </button>*@
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#contains">Contains</a></li>
                                     <li><a href="#its_equal">It's equal</a></li>

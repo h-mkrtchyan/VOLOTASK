@@ -71,7 +71,7 @@ body {
     position: absolute;
     width: 100%;
     top: 12em;
-    font-family: myFont;
+    font-family: monospace;
     font-weight: 100;
     color: #FFFFFF;
     text-align: center;

@@ -22,7 +22,7 @@ namespace DataAccessLayer
     
         public int ID { get; set; }
         public string AttributeName { get; set; }
-        public int TypeName { get; set; }
+        public string TypeName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Books_AttributesValue> Books_AttributesValue { get; set; }

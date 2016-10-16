@@ -10,12 +10,12 @@
         <EntityTypeShape EntityType="BookStoreModel.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="BookStoreModel.AspNetUserLogin" Width="1.5" PointX="10.25" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BookStoreModel.AspNetUser" Width="1.5" PointX="8" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookStoreModel.Attribute" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookStoreModel.Attribute" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BookStoreModel.Author" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BookStoreModel.Book" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="BookStoreModel.Books_AttributesValue" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="BookStoreModel.Country" Width="1.5" PointX="0.625" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookStoreModel.Genre" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookStoreModel.Genre" Width="1.5" PointX="3.5" PointY="5.375" IsExpanded="true" />
         <AssociationConnector Association="BookStoreModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="BookStoreModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="BookStoreModel.FK_Books_AttributesValue_Attributes1" ManuallyRouted="false" />

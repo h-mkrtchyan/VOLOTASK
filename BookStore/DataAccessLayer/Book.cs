@@ -11,7 +11,10 @@ namespace DataAccessLayer
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using DataAccessLayer.Models;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Book
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +24,8 @@ namespace DataAccessLayer
         }
     
         public int ID { get; set; }
+
+        [Required(ErrorMessage = "Title can't be empty: MAX 40 Characters!")]
         public string Title { get; set; }
         public int AuthorID { get; set; }
         public int GenreID { get; set; }
@@ -28,6 +33,10 @@ namespace DataAccessLayer
         public Nullable<int> PageCount { get; set; }
         public string Description { get; set; }
         public int CountryID { get; set; }
+        
+        [Required(ErrorMessage = "Price can't be empty!")]
+        [DataType(DataType.Currency)]
+        [RegularExpression(@"^\d+(\.\d{1,2})?$", ErrorMessage = "Enter Price for this format $XX.XX")]
         public decimal Price { get; set; }
     
         public virtual Author Author { get; set; }

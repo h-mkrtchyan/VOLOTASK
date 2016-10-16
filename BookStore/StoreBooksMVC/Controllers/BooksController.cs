@@ -54,7 +54,9 @@ namespace StoreBooksMVC.Controllers
 
                 if (!books.Any())
                 {
-                    ViewBag.NotFoundMessage = searchQuery + " Data not found";
+                    ViewBag.NotFoundMessage = "\""+ searchQuery+"\"" + " book not found";
+
+                    //return PartialView("bookNotFound", searchQuery);
                 }
             }
 
@@ -75,8 +77,8 @@ namespace StoreBooksMVC.Controllers
 
             if (page > books.ToPagedList(page, pageSize).PageCount)
             {
-                Response.RedirectToRoute(page = 1);
-                //page = 1;
+                //Response.RedirectToRoute(page = 1);
+                page = 1;
             }
 
             return View(books.ToPagedList(page, pageSize));

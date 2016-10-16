@@ -72,7 +72,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AttributeName" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="TypeName" Type="int" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Author">
           <Key>
@@ -93,7 +93,7 @@
           <Property Name="PageCount" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="2000" Nullable="false" />
           <Property Name="CountryID" Type="int" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Price" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="Books_AttributesValue">
           <Key>
@@ -355,7 +355,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AttributeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TypeName" Type="Int32" Nullable="false" />
+          <Property Name="TypeName" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
           <NavigationProperty Name="Books_AttributesValue" Relationship="Self.FK_Books_AttributesValue_Attributes1" FromRole="Attributes" ToRole="Books_AttributesValue" />
         </EntityType>
         <EntityType Name="Author">
@@ -378,7 +378,7 @@
           <Property Name="PageCount" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CountryID" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="Author" Relationship="Self.FK_Books_Author" FromRole="Books" ToRole="Author" />
           <NavigationProperty Name="Books_AttributesValue" Relationship="Self.FK_Books_AttributesValue_Books" FromRole="Books" ToRole="Books_AttributesValue" />
           <NavigationProperty Name="Country" Relationship="Self.FK_Books_Country" FromRole="Books" ToRole="Country" />

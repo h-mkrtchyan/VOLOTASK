@@ -6,14 +6,12 @@
     ViewBag.Title = "Books";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<p>
-@Html.ActionLink("Create New", "Create", new { @class = "btn btn-outline-primary" })
-</p>
+
 @using (Ajax.BeginForm("Index", new AjaxOptions { UpdateTargetId = "table" }))
 {
 <p>
     @Html.TextBox("SearchQuery")
-    <input type="submit" value="Search"/>
+    <input type="submit" value="Search" />
 </p>
 }
 
@@ -72,7 +70,7 @@
 {
     <tr>
         <td>
-            <img src="~/Images/@item.ImagePath" alt="Img" width="100" height="150" />
+            <a href="@Url.Action("Details", new { id = @item.ID })"><img src="~/Images/@item.ImagePath" alt="Img" width="100" height="150" /></a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
@@ -93,32 +91,26 @@
             @Html.DisplayFor(modelItem => item.Country.Country1)
         </td>*@
         <td>
-            @{  decimal totalPrice = item.Price + item.Country.PhoneCode;
-                var price = totalPrice.ToString("C2");
+            @{
+                decimal totalPrice = Convert.ToDecimal(item.Price + item.Country.PhoneCode);
+               var price = totalPrice.ToString("C2");
             }
             @Html.DisplayFor(modelItem => price)
         </td>
         <td>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <a title="Edit" style="background-color: chartreuse;" class="btn" href="@Url.Action("Edit", new { id = @item.ID })">
-                    <span class="glyphicon glyphicon-pencil "></span>
-                </a>
-                <a title="Edit" style="background-color: chartreuse;" class="btn" href="@Url.Action("Delete", new { id = @item.ID })">
-                    <span class="glyphicon glyphicon-trash "></span>
-                </a>
+            @if(User.Identity.IsAuthenticated)
+            { 
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID })<p>|</p>
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })<p>|</p>
             }
-            <a title="Details" style="background-color: chartreuse; border-radius: 0px, 0px;" class="btn" href="@Url.Action("Details", new { id = @item.ID })">
-                <span class="glyphicon glyphicon-list-alt "></span>
-            </a>
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
         </td>
     </tr>
 }
 </table>
 }
-else
-{
-  @ViewBag.NotFoundMessage
+else{ 
+    @ViewBag.NotFoundMessage
 }
 <br />
 @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@

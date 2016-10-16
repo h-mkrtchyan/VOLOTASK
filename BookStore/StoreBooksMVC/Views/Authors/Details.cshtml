@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
 <div>
     <h4>Author</h4>
     <hr />
@@ -23,5 +21,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="#" onClick="history.go(-1)"><img src="~/Content/assets/img/left-arrow.png" alt="Book Store logo" width="50px" /></a>
 </p>

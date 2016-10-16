@@ -8,112 +8,93 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DataAccessLayer;
-using PagedList;
 
 namespace StoreBooksMVC.Controllers
 {
-    public class AuthorsController : Controller
+    [HandleError]
+    public class AttributesController : Controller
     {
         private BookStoreEntities db = new BookStoreEntities();
 
-        // GET: Authors
-        [Authorize]
-        public ActionResult Index(string sortedQuery, string currentFilter, int page = 1)
+        // GET: Attributes
+        public async Task<ActionResult> Index()
         {
-
-            ViewBag.CurrentSort = sortedQuery;
-
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortedQuery) ? "FullName_desc" : "";
-            //ViewBag.NameSortParm = sortedQuery == "ISO" ? "ISO_desc" : "ISO";
-
-            var authors = from a in db.Authors select a;
-
-            switch (sortedQuery)
-            {
-                default:
-                    authors = authors.OrderBy(a => a.FullName);
-                    break;
-            }
-
-            int pageSize = 50;
-
-            return View(authors.ToPagedList(page, pageSize));
+            return View(await db.Attributes.ToListAsync());
         }
 
-        // GET: Authors/Details/5
+        // GET: Attributes/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Author author = await db.Authors.FindAsync(id);
-            if (author == null)
+            DataAccessLayer.Attribute attribute = await db.Attributes.FindAsync(id);
+            if (attribute == null)
             {
                 return HttpNotFound();
             }
-            return View(author);
+            return View(attribute);
         }
 
-        // GET: Authors/Create
+        // GET: Attributes/Create
         [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Authors/Create
+        // POST: Attributes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,FullName")] Author author)
+        public async Task<ActionResult> Create([Bind(Include = "ID,AttributeName,TypeName")] DataAccessLayer.Attribute attribute)
         {
             if (ModelState.IsValid)
             {
-                db.Authors.Add(author);
+                db.Attributes.Add(attribute);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(author);
+            return View(attribute);
         }
 
-        // GET: Authors/Edit/5
+        // GET: Attributes/Edit/5
         [Authorize]
+        
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Author author = await db.Authors.FindAsync(id);
-            if (author == null)
+            DataAccessLayer.Attribute attribute = await db.Attributes.FindAsync(id);
+            if (attribute == null)
             {
                 return HttpNotFound();
             }
-            return View(author);
+            return View(attribute);
         }
 
-        // POST: Authors/Edit/5
+        // POST: Attributes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,FullName")] Author author)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,AttributeName,TypeName")] DataAccessLayer.Attribute attribute)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(author).State = EntityState.Modified;
+                db.Entry(attribute).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(author);
+            return View(attribute);
         }
 
-        // GET: Authors/Delete/5
+        // GET: Attributes/Delete/5
         [Authorize]
         public async Task<ActionResult> Delete(int? id)
         {
@@ -121,22 +102,22 @@ namespace StoreBooksMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Author author = await db.Authors.FindAsync(id);
-            if (author == null)
+            DataAccessLayer.Attribute attribute = await db.Attributes.FindAsync(id);
+            if (attribute == null)
             {
                 return HttpNotFound();
             }
-            return View(author);
+            return View(attribute);
         }
 
-        // POST: Authors/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Attributes/Delete/5
         [Authorize]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Author author = await db.Authors.FindAsync(id);
-            db.Authors.Remove(author);
+            DataAccessLayer.Attribute attribute = await db.Attributes.FindAsync(id);
+            db.Attributes.Remove(attribute);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

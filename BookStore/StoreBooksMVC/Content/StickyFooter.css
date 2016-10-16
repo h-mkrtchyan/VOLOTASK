@@ -12,13 +12,5 @@ body {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: darkviolet;
-}
-
-.text-muted {
-    position: absolute;
-    left: 40%;
-    color: #FFFFFF;
-    font-family: roboto;
-    font-weight: 700;
+  background-color: darkslategray;
 }
